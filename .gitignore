@@ -14,3 +14,6 @@ wheels/
 app/data/*
 # memo.mdは例外としてリポジトリに追加
 !app/data/memo.md
+
+# .DS_Storeを除外
+.DS_Store
