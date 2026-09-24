@@ -1,0 +1,1 @@
+wikipediaから取得したテキスト(`article.txt`)とgeminiで生成したgeojson(`madata.json`)が保存されるディレクトリ

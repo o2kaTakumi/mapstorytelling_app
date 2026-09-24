@@ -1,0 +1,16 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.env
+
+# app/dataフォルダの中身は除外する
+app/data/*
+# memo.mdは例外としてリポジトリに追加
+!app/data/memo.md
