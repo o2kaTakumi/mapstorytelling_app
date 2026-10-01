@@ -79,7 +79,6 @@ def get_scenes_data(source_text, root_dir:Path, refresh=False):
     - ナレーションを理解する助けとなるように，各シーンの地図に，必ずひとつ以上で，十分な数の地図情報（ポイント，ライン，ポリゴン，ラベル）を配置して下さい．
     - 特にポリゴンを多めにを多めに配置して下さい．
     - properties内のstyleは、Mapboxのpaintプロパティに対応させてください。
-    - ナレーションと地図要素に矛盾がないよう、自己検閲した上で出力してください。
 
     元の文章:
     {source_text}
@@ -89,7 +88,7 @@ def get_scenes_data(source_text, root_dir:Path, refresh=False):
     try:
         # 2. 指定されたモデル (gemini-3.6-flash) でコンテンツを生成
         response = client.models.generate_content(
-            model="gemini-3.5-flash-lite", 
+            model="gemini-3.5-flash", 
             contents=prompt,
             config={
                 "response_mime_type": "application/json",
