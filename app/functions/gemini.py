@@ -1,4 +1,5 @@
 import json, os
+import time
 
 from pathlib import Path
 from google import genai
@@ -66,12 +67,14 @@ def get_scenes_data(source_text, root_dir:Path, refresh=False):
         except json.JSONDecodeError:
             print("JSON decode error. Regenerating...")
 
+    dynamic_prefix = f"--- Request ID: {time.time()} ---\n"
     print("Generating scenes with Gemini API...")
     gemini_api_key = os.getenv("GEMINI_API_KEY")
     client = genai.Client(api_key=gemini_api_key)
     
     # プロンプトの組み立て
     prompt = f"""
+    {dynamic_prefix}
     以下の「元の文章」を元に、Mapbox Storytelling用の地図データ（シーンリスト）を作成してください。
 
     ## 注意事項:
@@ -86,9 +89,9 @@ def get_scenes_data(source_text, root_dir:Path, refresh=False):
 
 # 座標は信頼できる地理情報を元に、正確な数値（[経度, 緯度]）を推測して入れてください。
     try:
-        # 2. 指定されたモデル (gemini-3.6-flash) でコンテンツを生成
+        # 2. 指定されたモデルでコンテンツを生成
         response = client.models.generate_content(
-            model="gemini-3.5-flash", 
+            model="gemini-3.8-flash", 
             contents=prompt,
             config={
                 "response_mime_type": "application/json",
